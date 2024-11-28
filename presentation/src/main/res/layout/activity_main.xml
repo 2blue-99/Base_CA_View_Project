@@ -24,10 +24,15 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:navGraph="@navigation/app_navigation"
-            app:defaultNavHost="true"
+            app:defaultNavHost="true" />
+
+        <include
+            android:id="@+id/incLoading"
+            layout="@layout/loading_screen"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clickable="true"
             />
-
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
