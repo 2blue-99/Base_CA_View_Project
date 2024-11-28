@@ -20,11 +20,22 @@
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/nav_host"
-            android:name="androidx.navigation.fragment.NavHostFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:name="androidx.navigation.fragment.NavHostFragment"
+            app:defaultNavHost="true"
             app:navGraph="@navigation/app_navigation"
-            app:defaultNavHost="true" />
+            />
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/nav_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:labelVisibilityMode="labeled"
+            app:menu="@menu/bottom_nav_menu"
+            app:itemIconTint="@color/selector_menu"
+            />
 
         <include
             android:id="@+id/incLoading"
@@ -32,6 +43,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:clickable="true"
+            android:visibility="invisible"
             />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -13,4 +13,8 @@
         android:id="@+id/homeFragment"
         android:name="com.example.base_view_project.ui.home.HomeFragment"
         android:label="HomeFragment" />
+    <fragment
+        android:id="@+id/settingFragment"
+        android:name="com.example.base_view_project.ui.setting.SettingFragment"
+        android:label="SettingFragment" />
 </navigation>

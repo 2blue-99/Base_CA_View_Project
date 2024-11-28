@@ -1,8 +1,6 @@
 package com.example.base_view_project.ui
 
-import android.util.Log
 import androidx.lifecycle.viewModelScope
-import com.example.base_view_project.R
 import com.example.base_view_project.ui.base.BaseViewModel
 import com.example.base_view_project.util.PopupContent
 import com.example.base_view_project.util.event.BaseEvent
