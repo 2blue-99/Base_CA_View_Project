@@ -3,10 +3,13 @@ package com.example.base_view_project.ui.home
 import androidx.fragment.app.viewModels
 import com.example.base_view_project.databinding.FragmentHomeBinding
 import com.example.base_view_project.ui.base.BaseFragment
+import com.example.domain.usecase.TestUseCase
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(
+class HomeFragment(
+    private val testUseCase: TestUseCase
+) : BaseFragment<FragmentHomeBinding, HomeViewModel>(
     FragmentHomeBinding::inflate
 ) {
     override val viewModel: HomeViewModel by viewModels()

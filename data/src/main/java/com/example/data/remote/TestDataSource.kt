@@ -1,5 +1,6 @@
 package com.example.data.remote
 
+import com.example.data.remote.model.ResponseData
 import retrofit2.Response
 import retrofit2.http.GET
 
