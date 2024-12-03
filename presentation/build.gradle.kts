@@ -1,7 +1,8 @@
 plugins {
+    kotlin("kapt")
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
-    id("kotlin-kapt")
+    alias(libs.plugins.hilt.android)
 }
 
 android {
@@ -57,8 +58,9 @@ dependencies {
 
     implementation(libs.timber)
 
-    // hilt
+    /* hilt */
     implementation(libs.hilt)
     kapt (libs.dagger.hilt.compiler)
+    kapt (libs.androidx.hilt.compiler)
 
 }

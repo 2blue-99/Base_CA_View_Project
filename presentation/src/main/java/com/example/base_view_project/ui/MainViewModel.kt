@@ -4,10 +4,16 @@ import androidx.lifecycle.viewModelScope
 import com.example.base_view_project.ui.base.BaseViewModel
 import com.example.base_view_project.util.PopupContent
 import com.example.base_view_project.util.event.BaseEvent
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class MainViewModel: BaseViewModel() {
+
+@HiltViewModel
+class MainViewModel @Inject constructor(
+
+): BaseViewModel() {
 
     fun onClickLogout(){
         viewModelScope.launch {

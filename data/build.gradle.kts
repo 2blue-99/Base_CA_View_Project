@@ -1,6 +1,8 @@
 plugins {
+    kotlin("kapt")
     alias(libs.plugins.android.library)
     alias(libs.plugins.jetbrains.kotlin.android)
+    alias(libs.plugins.hilt.android)
 }
 
 android {
@@ -43,4 +45,19 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
 
     implementation(libs.timber)
+
+    /* Hilt */
+    implementation(libs.hilt)
+    kapt (libs.dagger.hilt.compiler)
+    kapt (libs.androidx.hilt.compiler)
+
+    /* Room */
+
+    /* Retrofit */
+    implementation ("com.squareup.retrofit2:retrofit:2.11.0")
+    implementation ("com.squareup.retrofit2:converter-moshi:2.11.0")
+
+    // OkHttp
+    implementation ("com.squareup.okhttp3:okhttp:4.12.0")
+    implementation ("com.squareup.okhttp3:logging-interceptor:4.12.0")
 }

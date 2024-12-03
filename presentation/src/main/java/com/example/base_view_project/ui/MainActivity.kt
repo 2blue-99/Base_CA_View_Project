@@ -1,15 +1,14 @@
 package com.example.base_view_project.ui
 
-import android.os.Bundle
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.example.base_view_project.R
 import com.example.base_view_project.databinding.ActivityMainBinding
 import com.example.base_view_project.ui.base.BaseActivity
-import com.google.android.material.bottomsheet.BottomSheetBehavior
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(
     R.layout.activity_main
 ) {
