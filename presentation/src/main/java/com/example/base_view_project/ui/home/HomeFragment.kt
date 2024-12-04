@@ -7,9 +7,7 @@ import com.example.domain.usecase.TestUseCase
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class HomeFragment(
-    private val testUseCase: TestUseCase
-) : BaseFragment<FragmentHomeBinding, HomeViewModel>(
+class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(
     FragmentHomeBinding::inflate
 ) {
     override val viewModel: HomeViewModel by viewModels()

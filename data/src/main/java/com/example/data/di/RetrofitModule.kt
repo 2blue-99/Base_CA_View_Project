@@ -1,6 +1,8 @@
 package com.example.data.di
 
 import com.example.data.remote.util.NetworkInterceptor
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -8,7 +10,7 @@ import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
-import retrofit2.converter.moshi.MoshiConverterFactory
+import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
@@ -18,6 +20,8 @@ object RetrofitModule {
 
     private const val DEBUG_TIME_OUT = 10000L
     private const val RELEASE_TIME_OUT = 10000L
+
+    private var gson: Gson = GsonBuilder().setLenient().create()
 
     @Singleton
     @Provides
@@ -43,7 +47,8 @@ object RetrofitModule {
     @Singleton
     @Provides
     fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit = Retrofit.Builder()
-        .addConverterFactory(MoshiConverterFactory.create())
+        .addConverterFactory(GsonConverterFactory.create(gson))
+//        .addConverterFactory(MoshiConverterFactory.create())
         .client(okHttpClient)
         .baseUrl("https://koreanjson.com/")
         .build()

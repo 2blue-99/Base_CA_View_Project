@@ -8,6 +8,6 @@ class TestRepositoryImpl @Inject constructor(
     private val dataSource: TestDataSourceImpl
 ): TestRepository {
     override suspend fun getTestData(): String {
-        return dataSource.getDataSource().toString()
+        return dataSource.getDataSource().body().toString()
     }
 }

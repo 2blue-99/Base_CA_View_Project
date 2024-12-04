@@ -7,6 +7,7 @@ import com.example.base_view_project.R
 import com.example.base_view_project.databinding.ActivityMainBinding
 import com.example.base_view_project.ui.base.BaseActivity
 import dagger.hilt.android.AndroidEntryPoint
+import timber.log.Timber
 
 @AndroidEntryPoint
 class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(

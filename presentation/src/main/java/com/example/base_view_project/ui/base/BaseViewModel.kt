@@ -28,6 +28,7 @@ abstract class BaseViewModel: ViewModel() {
     private val job = SupervisorJob()
 
     protected val exceptionHandler = CoroutineExceptionHandler { coroutineContext, throwable ->
+        Timber.e("Exception : $throwable")
         coroutineContext.job.cancel()
     }
 
