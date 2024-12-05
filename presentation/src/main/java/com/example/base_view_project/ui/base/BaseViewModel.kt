@@ -19,11 +19,11 @@ import timber.log.Timber
 import kotlin.coroutines.coroutineContext
 
 abstract class BaseViewModel: ViewModel() {
-    private val _eventFlow = MutableSharedFlow<BaseEvent>()
+
+    protected val _eventFlow = MutableSharedFlow<BaseEvent>()
     val eventFlow = _eventFlow.asSharedFlow()
 
-    // TODO  State Flow
-    protected val isLoading = MutableLiveData(false)
+    val isLoading = MutableLiveData(false)
 
     private val job = SupervisorJob()
 
@@ -44,13 +44,13 @@ abstract class BaseViewModel: ViewModel() {
 
 
 
-    suspend fun emitEvent(event: BaseEvent){
+    protected suspend fun emitEvent(event: BaseEvent){
         viewModelScope.launch {
             _eventFlow.emit(event)
         }
     }
 
-    suspend fun <T> awaitEvent(event: EventDelegator<T>): T? {
+    protected suspend fun <T> awaitEvent(event: EventDelegator<T>): T? {
         if(event is BaseEvent){
             emitEvent(event)
         }

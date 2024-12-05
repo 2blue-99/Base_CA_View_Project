@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import com.example.base_view_project.BR
+import com.example.base_view_project.ui.MainViewModel
 import com.example.base_view_project.util.event.BaseEvent
 import timber.log.Timber
 
@@ -100,5 +101,11 @@ abstract class BaseActivity<VB : ViewDataBinding, VM : BaseViewModel>(
                 event.cancel()
             }
             .show()
+    }
+
+    protected fun setLoading(state: Boolean){
+        if(viewModel is MainViewModel){
+            viewModel.isLoading.value = state
+        }
     }
 }

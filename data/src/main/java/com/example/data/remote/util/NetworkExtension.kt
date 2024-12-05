@@ -2,6 +2,7 @@ package com.example.data.remote.util
 
 import com.example.domain.util.ExceptionType
 import com.example.domain.util.ResourceState
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import retrofit2.Response
@@ -46,6 +47,7 @@ inline fun <reified T: Any, R: Any> APIResponseState<T>.toDomainFlow(mapper: (T)
     }
     return flow {
         emit(ResourceState.Loading())
+        delay(2000)
         emit(resource)
     }
 }
