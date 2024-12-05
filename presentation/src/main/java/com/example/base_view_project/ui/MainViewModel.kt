@@ -20,8 +20,9 @@ class MainViewModel @Inject constructor(
     init {
         modelScope.launch {
             Timber.d("init")
-            val gap = useCase.test()
-            Timber.d("gap : $gap")
+            useCase.test().collect {
+                Timber.d("gap : $it")
+            }
         }
     }
 
