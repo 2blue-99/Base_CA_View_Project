@@ -1,4 +1,4 @@
-package com.example.data.di
+package com.example.data.remote.di
 
 import com.example.data.remote.util.NetworkInterceptor
 import com.google.gson.Gson

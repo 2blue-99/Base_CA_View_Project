@@ -1,4 +1,4 @@
-package com.example.data.di
+package com.example.data.remote.di
 
 import com.example.data.remote.TestDataSource
 import dagger.Module

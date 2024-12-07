@@ -53,6 +53,8 @@ dependencies {
     kapt (libs.androidx.hilt.compiler)
 
     /* Room */
+    implementation("androidx.room:room-runtime:2.6.1")
+    kapt ("androidx.room:room-runtime:2.6.1")
 
     /* Retrofit */
     implementation ("com.squareup.retrofit2:retrofit:2.11.0")

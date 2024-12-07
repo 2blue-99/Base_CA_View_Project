@@ -1,4 +1,4 @@
-package com.example.data.di
+package com.example.data.remote.di
 
 import com.example.domain.repo.TestRepository
 import com.example.domain.usecase.TestUseCase
