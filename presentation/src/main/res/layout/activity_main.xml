@@ -50,9 +50,14 @@
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:textSize="20sp"
-            android:text="@{viewModel.testLiveData.content}"
+            android:text="@{viewModel.testLiveData}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:onClick="@{() -> viewModel.onClickLogout()}"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

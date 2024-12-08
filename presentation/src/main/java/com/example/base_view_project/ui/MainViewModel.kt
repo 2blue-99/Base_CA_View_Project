@@ -35,9 +35,14 @@ class MainViewModel @Inject constructor(
 
     fun onClickLogout(){
         viewModelScope.launch {
+            // 멈춰있다.
+            // sharedState를 사용
+
+            // 팝업창 띄어줌
             val isSuccess = awaitEvent(
                 BaseEvent.ShowPopup(content = PopupContent.NETWORK_ERR)
             )
+            // 멈춰있음
             if(isSuccess == true){
                 // TODO 로그아웃 로직 실행
                 requestAPIData()

@@ -8,4 +8,5 @@ interface TestRepository {
 
     suspend fun getTestData(): Flow<ResourceState<TestData>>
 
+    fun getTestDao(): Flow<List<TestData>>
 }
