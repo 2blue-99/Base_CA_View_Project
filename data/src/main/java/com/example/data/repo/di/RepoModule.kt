@@ -1,4 +1,4 @@
-package com.example.data.remote.di
+package com.example.data.repo.di
 
 import com.example.data.local.dao.TestDao
 import com.example.data.remote.TestDataSourceImpl

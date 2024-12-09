@@ -9,4 +9,8 @@ interface TestRepository {
     suspend fun getTestData(): Flow<ResourceState<TestData>>
 
     fun getTestDao(): Flow<List<TestData>>
+
+    fun upsertTestDao(testEntity: TestData)
+
+    fun deleteTestDao(id: Int)
 }

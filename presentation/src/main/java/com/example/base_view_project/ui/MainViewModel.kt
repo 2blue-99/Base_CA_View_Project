@@ -8,8 +8,8 @@ import com.example.base_view_project.util.PopupContent
 import com.example.base_view_project.util.event.BaseEvent
 import com.example.base_view_project.util.event.resourceHandler
 import com.example.domain.model.TestData
+import com.example.domain.usecase.TestDaoUseCase
 import com.example.domain.usecase.TestUseCase
-import com.example.domain.util.ResourceState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -19,7 +19,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
-    private val useCase: TestUseCase
+    private val useCase: TestUseCase,
+    private val daoUseCase: TestDaoUseCase
 ): BaseViewModel() {
 
     private var _testLiveData = MutableLiveData<TestData>()
@@ -27,11 +28,30 @@ class MainViewModel @Inject constructor(
 
     init {
         modelScope.launch {
+            daoUseCase.upsert(new())
+            daoUseCase.upsert(new())
+            daoUseCase.upsert(new())
+            daoUseCase.upsert(new())
+
             useCase.test().resourceHandler(_eventFlow) {
                 _testLiveData.value = it
             }
+
+            daoUseCase.getAll().collect {
+                Timber.d("room : $it")
+            }
         }
     }
+
+    fun new():TestData =
+        TestData(
+            id = 0,
+            title = "test title",
+            content = "test content",
+            createdAt = "test createdAt",
+            updatedAt = "test updatedAt",
+            userId = 0
+        )
 
     fun onClickLogout(){
         viewModelScope.launch {
