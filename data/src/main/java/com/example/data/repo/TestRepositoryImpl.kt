@@ -1,7 +1,9 @@
 package com.example.data.repo
 
 import com.example.data.local.dao.TestDao
+import com.example.data.local.entity.TestEntity
 import com.example.data.remote.TestDataSourceImpl
+import com.example.data.remote.util.Mapper.toEntity
 import com.example.data.remote.util.toDomainFlow
 import com.example.domain.model.TestData
 import com.example.domain.repo.TestRepository
@@ -19,6 +21,14 @@ class TestRepositoryImpl @Inject constructor(
     }
 
     override fun getTestDao(): Flow<List<TestData>> {
-        return testDao.getAll().map { it.map { data -> data.toDomain() } }
+        return testDao.getAllData().map { it.map { data -> data.toDomain() } }
+    }
+
+    override fun upsertTestDao(testEntity: TestData) {
+        testDao.upsertData(testEntity.toEntity())
+    }
+
+    override fun deleteTestDao(id: Int) {
+        testDao.deleteData(id)
     }
 }
