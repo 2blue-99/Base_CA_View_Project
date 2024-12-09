@@ -1,7 +1,6 @@
 package com.example.data.repo
 
 import com.example.data.local.dao.TestDao
-import com.example.data.local.entity.TestEntity
 import com.example.data.remote.TestDataSourceImpl
 import com.example.data.remote.util.Mapper.toEntity
 import com.example.data.remote.util.toDomainFlow

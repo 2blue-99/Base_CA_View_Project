@@ -28,25 +28,27 @@ class MainViewModel @Inject constructor(
 
     init {
         modelScope.launch {
-            daoUseCase.upsert(new())
-            daoUseCase.upsert(new())
-            daoUseCase.upsert(new())
-            daoUseCase.upsert(new())
-
             useCase.test().resourceHandler(_eventFlow) {
                 _testLiveData.value = it
             }
-
+        }
+        ioScope.launch {
+            repeat(5){
+                daoUseCase.upsert(new(1))
+                delay(1000)
+            }
+        }
+        ioScope.launch {
             daoUseCase.getAll().collect {
                 Timber.d("room : $it")
             }
         }
     }
 
-    fun new():TestData =
+    private fun new(count: Int):TestData =
         TestData(
             id = 0,
-            title = "test title",
+            title = "${count} test title",
             content = "test content",
             createdAt = "test createdAt",
             updatedAt = "test updatedAt",
