@@ -24,6 +24,9 @@ android {
                 "proguard-rules.pro"
             )
         }
+        debug {
+
+        }
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
@@ -63,5 +66,4 @@ dependencies {
     implementation (libs.logging.interceptor)
 
     implementation(libs.androidx.dataStore.preferences)
-
 }
