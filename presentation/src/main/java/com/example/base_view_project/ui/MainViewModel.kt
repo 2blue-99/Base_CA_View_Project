@@ -8,6 +8,7 @@ import com.example.base_view_project.util.PopupContent
 import com.example.base_view_project.util.event.BaseEvent
 import com.example.base_view_project.util.event.resourceHandler
 import com.example.domain.model.TestData
+import com.example.domain.repo.DataStoreRepo
 import com.example.domain.usecase.TestDaoUseCase
 import com.example.domain.usecase.TestUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -20,11 +21,14 @@ import javax.inject.Inject
 @HiltViewModel
 class MainViewModel @Inject constructor(
     private val useCase: TestUseCase,
-    private val daoUseCase: TestDaoUseCase
+    private val daoUseCase: TestDaoUseCase,
+    private val dataStoreRepo: DataStoreRepo
 ): BaseViewModel() {
 
     private var _testLiveData = MutableLiveData<TestData>()
     val testLiveData: LiveData<TestData> = _testLiveData
+
+    private var count = 0
 
     init {
         modelScope.launch {
@@ -43,6 +47,11 @@ class MainViewModel @Inject constructor(
                 Timber.d("room : $it")
             }
         }
+        modelScope.launch {
+            dataStoreRepo.dataStoreFlow.collect {
+                Timber.d("data store : $it")
+            }
+        }
     }
 
     private fun new(count: Int):TestData =
@@ -57,16 +66,12 @@ class MainViewModel @Inject constructor(
 
     fun onClickLogout(){
         viewModelScope.launch {
-            // 멈춰있다.
-            // sharedState를 사용
-
             // 팝업창 띄어줌
             val isSuccess = awaitEvent(
                 BaseEvent.ShowPopup(content = PopupContent.NETWORK_ERR)
             )
             // 멈춰있음
             if(isSuccess == true){
-                // TODO 로그아웃 로직 실행
                 requestAPIData()
                 emitEvent(
                     BaseEvent.ShowToast("로그아웃 완료")

@@ -47,22 +47,21 @@ dependencies {
 
     implementation(libs.timber)
 
-    /* Hilt */
     implementation(libs.hilt)
     kapt (libs.dagger.hilt.compiler)
     kapt (libs.androidx.hilt.compiler)
 
-    /* Room */
     implementation(libs.room.runtime)
     kapt (libs.room.compiler)
     implementation (libs.room.ktx) // Room Flow
 
-    /* Retrofit */
-    implementation ("com.squareup.retrofit2:retrofit:2.11.0")
-    implementation ("com.squareup.retrofit2:converter-moshi:2.11.0")
-    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation (libs.retrofit)
+    implementation (libs.retrofit.converter.moshi)
+    implementation (libs.converter.gson)
 
-    // OkHttp
-    implementation ("com.squareup.okhttp3:okhttp:4.12.0")
-    implementation ("com.squareup.okhttp3:logging-interceptor:4.12.0")
+    implementation (libs.okhttp)
+    implementation (libs.logging.interceptor)
+
+    implementation(libs.androidx.dataStore.preferences)
+
 }
