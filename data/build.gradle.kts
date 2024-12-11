@@ -1,9 +1,14 @@
+import java.util.Properties
+
 plugins {
     kotlin("kapt")
     alias(libs.plugins.android.library)
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.hilt.android)
 }
+
+val properties = Properties()
+properties.load(project.rootProject.file("local.properties").inputStream())
 
 android {
     namespace = "com.example.data"
@@ -23,9 +28,10 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            buildConfigField("String", "API_KEY", properties.getProperty("API_KEY_RELEASE"))
         }
         debug {
-
+            buildConfigField("String", "API_KEY", properties.getProperty("API_KEY_DEBUG"))
         }
     }
     compileOptions {
@@ -35,7 +41,9 @@ android {
     kotlinOptions {
         jvmTarget = "17"
     }
-
+    buildFeatures {
+        buildConfig = true
+    }
 }
 
 dependencies {

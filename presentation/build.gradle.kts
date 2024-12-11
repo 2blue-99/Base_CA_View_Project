@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     kotlin("kapt")
     alias(libs.plugins.android.application)
@@ -5,9 +7,21 @@ plugins {
     alias(libs.plugins.hilt.android)
 }
 
+val properties = Properties()
+properties.load(project.rootProject.file("local.properties").inputStream())
+
 android {
     namespace = "com.example.base_view_project"
     compileSdk = 34
+
+    signingConfigs {
+        create("release"){
+            storeFile = file(properties.getProperty("storeFile"))
+            storePassword = properties.getProperty("storePassword")
+            keyAlias = properties.getProperty("keyAlias")
+            keyPassword = properties.getProperty("keyPassword")
+        }
+    }
 
     defaultConfig {
         applicationId = "com.example.base_view_project"
@@ -17,21 +31,25 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-
     }
 
     buildTypes {
+        debug {
+            applicationIdSuffix = "debug"
+            buildConfigField("String", "API_KEY", properties.getProperty("API_KEY_DEBUG"))
+        }
         release {
+            applicationIdSuffix = "release"
             isMinifyEnabled = false
+            signingConfig = signingConfigs.getByName("release")
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
-        }
-        debug {
-
+            buildConfigField("String", "API_KEY", properties.getProperty("API_KEY_RELEASE"))
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
@@ -41,6 +59,7 @@ android {
     }
 
     buildFeatures {
+        buildConfig = true
         dataBinding = true
     }
 }
