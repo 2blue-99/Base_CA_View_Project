@@ -15,12 +15,12 @@ android {
     compileSdk = 34
 
     signingConfigs {
-        create("release"){
-            storeFile = file(properties.getProperty("storeFile"))
-            storePassword = properties.getProperty("storePassword")
-            keyAlias = properties.getProperty("keyAlias")
-            keyPassword = properties.getProperty("keyPassword")
-        }
+//        create("release"){
+//            storeFile = file(properties.getProperty("storeFile"))
+//            storePassword = properties.getProperty("storePassword")
+//            keyAlias = properties.getProperty("keyAlias")
+//            keyPassword = properties.getProperty("keyPassword")
+//        }
     }
 
     defaultConfig {
@@ -41,7 +41,7 @@ android {
         release {
             applicationIdSuffix = "release"
             isMinifyEnabled = false
-            signingConfig = signingConfigs.getByName("release")
+//            signingConfig = signingConfigs.getByName("release")
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
