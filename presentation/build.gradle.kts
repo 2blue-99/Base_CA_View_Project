@@ -31,6 +31,10 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        // Manifest 변수
+        val nativeAppKey = properties.getProperty("GOOGLE_MAP_KEY") ?: ""
+        manifestPlaceholders["GOOGLE_MAP_KEY"] = nativeAppKey
     }
 
     buildTypes {
